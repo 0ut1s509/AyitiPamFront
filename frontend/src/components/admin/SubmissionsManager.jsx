@@ -4,6 +4,8 @@ import { showError, showSuccess } from '../../utils/toast';
 import VerdictModal from './VerdictModal';
 import AIAnalysis from './AIAnalysis'; // Import the AI Analysis component
 
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const SubmissionsManager = () => {
     const [submissions, setSubmissions] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -26,7 +28,7 @@ const SubmissionsManager = () => {
     const handleBulkStatusChange = async (newStatus) => {
         try {
             const promises = Array.from(selectedSubmissions).map(id =>
-                axios.patch(`http://localhost:8000/api/admin/submissions/${id}/`, {
+                axios.patch(`${VITE_API_BASE_URL}/api/admin/submissions/${id}/`, {
                     status: newStatus
                 })
             );
@@ -47,7 +49,7 @@ const SubmissionsManager = () => {
 
         try {
             const promises = Array.from(selectedSubmissions).map(id =>
-                axios.delete(`http://localhost:8000/api/admin/submissions/${id}/`)
+                axios.delete(`${VITE_API_BASE_URL}/api/admin/submissions/${id}/`)
             );
             await Promise.all(promises);
             showSuccess(`Deleted ${selectedSubmissions.size} submissions`);
@@ -65,7 +67,7 @@ const SubmissionsManager = () => {
 
     const fetchSubmissions = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/admin/submissions/');
+            const response = await axios.get(`${VITE_API_BASE_URL}/api/admin/submissions/`);
             setSubmissions(response.data);
         } catch (error) {
             showError('Failed to load submissions');
@@ -77,7 +79,7 @@ const SubmissionsManager = () => {
 
     const updateSubmissionStatus = async (id, newStatus) => {
         try {
-            await axios.patch(`http://localhost:8000/api/admin/submissions/${id}/`, {
+            await axios.patch(`${VITE_API_BASE_URL}/api/admin/submissions/${id}/`, {
                 status: newStatus
             });
             showSuccess('Submission status updated');
@@ -94,7 +96,7 @@ const SubmissionsManager = () => {
         }
 
         try {
-            await axios.delete(`http://localhost:8000/api/admin/submissions/${id}/`);
+            await axios.delete(`${VITE_API_BASE_URL}/api/admin/submissions/${id}/`);
             showSuccess('Submission deleted successfully');
             fetchSubmissions(); // Refresh the list
         } catch (error) {

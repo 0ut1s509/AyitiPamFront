@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [authModalMode, setAuthModalMode] = useState('login'); // Add this line
 
-  const API_BASE_URL = 'http://localhost:8000';
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
   // Initialize axios interceptors for token refresh
   useEffect(() => {
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
       if (accessToken && refreshToken) {
         setTokens({ access: accessToken, refresh: refreshToken });
         try {
-          const response = await axios.get(`${API_BASE_URL}/api/auth/profile/`);
+          const response = await axios.get(`${VITE_API_BASE_URL}/api/auth/profile/`);
           setUser(response.data.user);
         } catch (error) {
           console.error('Auto-login failed:', error);
@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/login/`, {
+      const response = await axios.post(`${VITE_API_BASE_URL}/api/auth/login/`, {
         username,
         password
       });
@@ -102,7 +102,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password, password2) => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/api/auth/register/`, {
+      const response = await axios.post(`${VITE_API_BASE_URL}/api/auth/register/`, {
         username,
         email,
         password,
@@ -131,7 +131,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const refreshToken = localStorage.getItem('refresh_token');
       if (refreshToken) {
-        await axios.post(`${API_BASE_URL}/api/auth/logout/`, {
+        await axios.post(`${VITE_API_BASE_URL}/api/auth/logout/`, {
           refresh: refreshToken
         });
       }

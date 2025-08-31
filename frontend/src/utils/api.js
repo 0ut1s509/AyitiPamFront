@@ -3,8 +3,8 @@ import axios from 'axios';
 import { showError } from './toast';
 
 // Base API URL
-const API_BASE_URL = 'http://localhost:8000';
-
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// 
 // Get auth token from localStorage
 const getAuthToken = () => {
   return localStorage.getItem('access_token');
@@ -24,7 +24,7 @@ export const apiRequest = async (url, method = 'GET', data = null, isFormData = 
 
     const config = {
       method,
-      url: `${API_BASE_URL}${url}`,
+      url: `${VITE_API_BASE_URL}${url}`,
       headers,
       data: isFormData ? data : JSON.stringify(data),
     };

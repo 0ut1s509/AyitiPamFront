@@ -11,6 +11,7 @@ function App() {
   const { isAuthModalOpen, setIsAuthModalOpen } = useAuth()
 
 
+
   return (
     <>
       <Routes>

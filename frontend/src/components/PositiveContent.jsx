@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000';
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+console.log("VITE_API_BASE_URL:", VITE_API_BASE_URL);
 
 const PositiveContent = () => {
     const [positiveContent, setPositiveContent] = useState([]);
@@ -13,12 +14,32 @@ const PositiveContent = () => {
         const fetchPositiveContent = async () => {
             try {
                 setLoading(true);
-                const response = await axios.get(`${API_BASE_URL}/api/positive-content/`);
-                setPositiveContent(response.data);
+                const response = await axios.get(`${VITE_API_BASE_URL}/api/positive-content/`);
+                
+                // Ensure we always have an array, even if the API returns a different structure
+                let contentData = response.data;
+                
+                // Handle different possible response structures
+                if (Array.isArray(contentData)) {
+                    setPositiveContent(contentData);
+                } else if (contentData && Array.isArray(contentData.results)) {
+                    // Handle paginated responses
+                    setPositiveContent(contentData.results);
+                } else if (contentData && Array.isArray(contentData.data)) {
+                    // Handle wrapped responses
+                    setPositiveContent(contentData.data);
+                } else {
+                    // If it's not an array, set to empty array and log error
+                    console.error("Unexpected API response structure:", contentData);
+                    setPositiveContent([]);
+                    setError('Unexpected data format received from server');
+                }
+                
                 setError(null);
             } catch (err) {
                 console.error("Error fetching positive content:", err);
                 setError('Could not load positive content. Please try again later.');
+                setPositiveContent([]); // Ensure it's always an array
             } finally {
                 setLoading(false);
             }
@@ -27,8 +48,8 @@ const PositiveContent = () => {
         fetchPositiveContent();
     }, []);
 
-    // Filter content by category
-    const filteredContent = selectedCategory === 'all'
+    // Filter content by category - ensure we're always working with an array
+    const filteredContent = (selectedCategory === 'all')
         ? positiveContent
         : positiveContent.filter(item => item.content_type === selectedCategory);
 
@@ -103,7 +124,7 @@ const PositiveContent = () => {
             </div>
 
             {/* Content Grid */}
-            {filteredContent.length > 0 ? (
+            {filteredContent && filteredContent.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {filteredContent.map((item) => (
                         <div key={item.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
@@ -125,12 +146,12 @@ const PositiveContent = () => {
                             <div className="p-6">
                                 <div className="mb-3">
                                     <span className="inline-block px-3 py-1 bg-av-green-100 text-av-green-700 text-xs font-semibold rounded-full">
-                                        {item.content_type_display}
+                                        {item.content_type_display || item.content_type}
                                     </span>
                                 </div>
                                 <h3 className="text-xl font-semibold text-gray-900 mb-3">{item.title}</h3>
                                 <p className="text-gray-700 leading-relaxed mb-4 line-clamp-3">
-                                    {item.description}
+                                    {item.description || item.content}
                                 </p>
                                 {item.source_url && (
                                     <a

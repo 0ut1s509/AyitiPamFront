@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { showError, showSuccess } from '../../utils/toast';
 
+
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const FactChecksManager = () => {
     const [factChecks, setFactChecks] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -23,7 +26,7 @@ const FactChecksManager = () => {
 
     const fetchFactChecks = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/admin/factchecks/');
+            const response = await axios.get(`${VITE_API_BASE_URL}/api/admin/factchecks/`);
             setFactChecks(response.data);
         } catch (error) {
             showError('Failed to load fact-checks');
@@ -39,7 +42,7 @@ const FactChecksManager = () => {
         }
 
         try {
-            await axios.delete(`http://localhost:8000/api/admin/factchecks/${id}/`);
+            await axios.delete(`${VITE_API_BASE_URL}/api/admin/factchecks/${id}/`);
             showSuccess('Fact-check deleted successfully');
             fetchFactChecks(); // Refresh the list
         } catch (error) {
@@ -56,7 +59,7 @@ const FactChecksManager = () => {
         e.preventDefault();
         try {
             await axios.put(
-                `http://localhost:8000/api/admin/factchecks/${editingFactCheck.id}/`,
+                `${VITE_API_BASE_URL}/api/admin/factchecks/${editingFactCheck.id}/`,
                 editingFactCheck
             );
             showSuccess('Fact-check updated successfully');
@@ -70,7 +73,7 @@ const FactChecksManager = () => {
 
     const handleCreate = async (formData) => {
         try {
-            await axios.post('http://localhost:8000/api/admin/factchecks/', formData);
+            await axios.post(`${VITE_API_BASE_URL}/api/admin/factchecks/`, formData);
             showSuccess('Fact-check created successfully');
             setIsCreateModalOpen(false);
             fetchFactChecks(); // Refresh the list

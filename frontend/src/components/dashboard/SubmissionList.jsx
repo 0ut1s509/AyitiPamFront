@@ -3,6 +3,8 @@ import axios from 'axios';
 import { showError } from '../../utils/toast';
 import { Link } from 'react-router-dom';
 
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const SubmissionList = () => {
     const [submissions, setSubmissions] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -13,7 +15,7 @@ const SubmissionList = () => {
 
     const fetchSubmissions = async () => {
         try {
-            const response = await axios.get('http://localhost:8000/api/user/submissions/');
+            const response = await axios.get(`${VITE_API_BASE_URL}/api/user/submissions/`);
             setSubmissions(response.data);
         } catch (error) {
             showError('Failed to load submissions');

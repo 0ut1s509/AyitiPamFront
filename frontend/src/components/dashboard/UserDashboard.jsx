@@ -7,6 +7,9 @@ import SubmissionList from './SubmissionList';
 import RecentActivity from './RecentActivity';
 import { useNavigate } from 'react-router-dom';
 
+
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const UserDashboard = () => {
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -20,7 +23,7 @@ const UserDashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/user/dashboard/');
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/user/dashboard/`);
       setDashboardData(response.data);
     } catch (error) {
       showError('Failed to load dashboard data');

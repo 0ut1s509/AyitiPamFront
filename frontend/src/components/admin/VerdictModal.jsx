@@ -2,6 +2,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import { showError, showSuccess } from '../../utils/toast';
 
+
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const VerdictModal = ({ submission, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
     title: submission.claim_text ? `Fact-Check: ${submission.claim_text.substring(0, 50)}...` : 'Fact-Check',
@@ -17,7 +20,7 @@ const VerdictModal = ({ submission, onClose, onSuccess }) => {
 
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/admin/submissions/${submission.id}/create-factcheck/`,
+        `${VITE_API_BASE_URL}/api/admin/submissions/${submission.id}/create-factcheck/`,
         formData
       );
 

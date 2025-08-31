@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { showError, showSuccess } from '../../utils/toast';
 
+
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const UsersManager = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,7 +27,7 @@ const UsersManager = () => {
       if (filters.is_staff !== 'all') params.append('is_staff', filters.is_staff);
       if (filters.is_active !== 'all') params.append('is_active', filters.is_active);
 
-      const response = await axios.get(`http://localhost:8000/api/admin/users/?${params}`);
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/admin/users/?${params}`);
       setUsers(response.data);
     } catch (error) {
       showError('Failed to load users');
@@ -45,7 +48,7 @@ const UsersManager = () => {
 
   const handleCreateUser = async (userData) => {
     try {
-      await axios.post('http://localhost:8000/api/admin/users/', userData);
+      await axios.post(`${VITE_API_BASE_URL}/api/admin/users/`, userData);
       showSuccess('User created successfully');
       setIsCreateModalOpen(false);
       fetchUsers();
@@ -57,7 +60,7 @@ const UsersManager = () => {
 
   const handleUpdateUser = async (userData) => {
     try {
-      await axios.patch(`http://localhost:8000/api/admin/users/${editingUser.id}/`, userData);
+      await axios.patch(`${VITE_API_BASE_URL}/api/admin/users/${editingUser.id}/`, userData);
       showSuccess('User updated successfully');
       setEditingUser(null);
       fetchUsers();
@@ -69,7 +72,7 @@ const UsersManager = () => {
 
   const handleToggleStatus = async (user) => {
     try {
-      await axios.patch(`http://localhost:8000/api/admin/users/${user.id}/activation/`, {
+      await axios.patch(`${VITE_API_BASE_URL}/api/admin/users/${user.id}/activation/`, {
         is_active: !user.is_active
       });
       showSuccess(`User ${!user.is_active ? 'activated' : 'deactivated'}`);
@@ -82,7 +85,7 @@ const UsersManager = () => {
 
   const handleToggleStaff = async (user) => {
     try {
-      await axios.patch(`http://localhost:8000/api/admin/users/${user.id}/`, {
+      await axios.patch(`${VITE_API_BASE_URL}/api/admin/users/${user.id}/`, {
         is_staff: !user.is_staff
       });
       showSuccess(`User ${!user.is_staff ? 'promoted to staff' : 'demoted from staff'}`);
@@ -99,7 +102,7 @@ const UsersManager = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:8000/api/admin/users/${user.id}/`);
+      await axios.delete(`${VITE_API_BASE_URL}/api/admin/users/${user.id}/`);
       showSuccess('User deleted successfully');
       fetchUsers();
     } catch (error) {

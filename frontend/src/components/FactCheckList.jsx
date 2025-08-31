@@ -3,7 +3,7 @@ import axios from 'axios';
 
 // Define the API base URL. We use a relative path because both servers are on localhost.
 // In production, this would be the full domain of your Django API.
-const API_BASE_URL = 'http://localhost:8000'; // Your Django server's address
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL; // Your Django server's address
 
 const FactCheckList = () => {
     // State to hold the list of fact-checks from the API
@@ -18,7 +18,7 @@ const FactCheckList = () => {
             try {
                 setLoading(true);
                 // Make a GET request to your Django API endpoint
-                const response = await axios.get(`${API_BASE_URL}/api/factchecks/`);
+                const response = await axios.get(`${VITE_API_BASE_URL}/api/factchecks/`);
                 // If successful, update the state with the fetched data
                 setFactChecks(response.data);
                 setError(null); // Clear any previous errors

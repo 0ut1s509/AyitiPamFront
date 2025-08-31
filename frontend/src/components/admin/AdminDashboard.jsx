@@ -7,6 +7,8 @@ import PositiveContentManager from './PositiveContentManager';
 import UsersManager from './UsersManager';
 import { useNavigate } from 'react-router-dom';
 
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const AdminDashboard = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -19,7 +21,7 @@ const AdminDashboard = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/admin/stats/');
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/admin/stats/`);
       setStats(response.data);
     } catch (error) {
       showError('Failed to load admin statistics');

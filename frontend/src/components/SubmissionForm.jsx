@@ -4,7 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 import { showError, showSuccess } from '../utils/toast';
 import AuthModal from './auth/AuthModal';
 
-const API_BASE_URL = 'http://localhost:8000';
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 const SubmissionForm = () => {
   // State to manage the form fields
@@ -62,7 +62,7 @@ const SubmissionForm = () => {
 
     try {
       // Make a POST request to your Django API endpoint
-      const response = await axios.post(`${API_BASE_URL}/api/submit-claim/`, formData);
+      const response = await axios.post(`${VITE_API_BASE_URL}/api/submit-claim/`, formData);
       
       // Handle success
       setSubmitMessage('Thank you! Your submission has been received and will be reviewed.');

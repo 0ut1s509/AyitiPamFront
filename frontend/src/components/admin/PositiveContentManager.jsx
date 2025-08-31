@@ -2,6 +2,10 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { showError, showSuccess } from '../../utils/toast';
 
+
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
 const PositiveContentManager = () => {
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +22,7 @@ const PositiveContentManager = () => {
 
   const fetchContent = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/admin/positive-content/');
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/admin/positive-content/`);
       setContent(response.data);
     } catch (error) {
       showError('Failed to load positive content');
@@ -34,7 +38,7 @@ const PositiveContentManager = () => {
     }
 
     try {
-      await axios.delete(`http://localhost:8000/api/admin/positive-content/${id}/`);
+      await axios.delete(`${VITE_API_BASE_URL}/api/admin/positive-content/${id}/`);
       showSuccess('Content deleted successfully');
       fetchContent();
     } catch (error) {
@@ -58,7 +62,7 @@ const PositiveContentManager = () => {
       });
 
       await axios.put(
-        `http://localhost:8000/api/admin/positive-content/${editingContent.id}/`,
+        `${VITE_API_BASE_URL}/api/admin/positive-content/${editingContent.id}/`,
         submitData,
         {
           headers: {
@@ -86,7 +90,7 @@ const PositiveContentManager = () => {
       });
 
       await axios.post(
-        'http://localhost:8000/api/admin/positive-content/',
+        `${VITE_API_BASE_URL}/api/admin/positive-content/`,
         submitData,
         {
           headers: {
@@ -106,7 +110,7 @@ const PositiveContentManager = () => {
 
   const togglePublishStatus = async (id, currentStatus) => {
     try {
-      await axios.patch(`http://localhost:8000/api/admin/positive-content/${id}/`, {
+      await axios.patch(`${VITE_API_BASE_URL}/api/admin/positive-content/${id}/`, {
         is_published: !currentStatus
       });
       showSuccess(`Content ${currentStatus ? 'unpublished' : 'published'}`);

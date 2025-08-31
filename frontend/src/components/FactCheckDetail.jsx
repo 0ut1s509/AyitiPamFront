@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const FactCheckDetail = () => {
   const { id } = useParams();
   const [factCheck, setFactCheck] = useState(null);
@@ -13,7 +15,7 @@ const FactCheckDetail = () => {
 
   const fetchFactCheck = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/api/factchecks/${id}/`);
+      const response = await axios.get(`${VITE_API_BASE_URL}/api/factchecks/${id}/`);
       setFactCheck(response.data);
     } catch (error) {
       console.error('Error fetching fact-check:', error);
