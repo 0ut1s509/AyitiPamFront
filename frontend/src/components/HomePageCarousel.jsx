@@ -9,9 +9,9 @@ const HomePageCarousel = () => {
   const slides = [
     {
       id: 1,
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: "https://imgs.search.brave.com/BLcs_ZxPMQuDyFMsjNLO1dxRISq2guPrVocj8EJVZO4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9leHRl/cm5hbC1wcmV2aWV3/LnJlZGQuaXQvdWpP/UVVaenM5M1QzOFJr/cU95UTdtUVQwR1lB/UVJyVEFxTXhfeUdw/TnBuTS5qcGc_d2lk/dGg9NjQwJmNyb3A9/c21hcnQmYXV0bz13/ZWJwJnM9MzA4MGUy/ZGY0ZDJhNmZiMTBk/MzYwMmVjNGI3ODQ0/MjhkYjJiNzI1ZQ",
       title: "Promoting Truth in Haiti",
-      description: "Ayiti Vérité is dedicated to verifying information and combating misinformation in Haitian communities.",
+      description: "Ayiti Pam Nan is dedicated to verifying information and combating misinformation in Haitian communities.",
       cta: "Submit a Claim",
       ctaAction: () => {
         const element = document.getElementById('submit');
@@ -22,7 +22,7 @@ const HomePageCarousel = () => {
     },
     {
       id: 2,
-      image: "https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1776&q=80",
+      image: "https://imgs.search.brave.com/Nov42yeMAtG1lmvGYFFPSp3rt__xTylQ1h6c2FoLUXc/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9zYWth/cGZldG9rYXAub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDIy/LzA4L2ltZ182MDcz/LmpwZz93PTgxMw",
       title: "Celebrating Haitian Culture",
       description: "Discover the rich cultural heritage and positive stories from across Haiti.",
       cta: "Explore Stories",
@@ -35,7 +35,7 @@ const HomePageCarousel = () => {
     },
     {
       id: 3,
-      image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: "https://imgs.search.brave.com/zDD21IY7hKTLq81RN3fIAo5ZfcNkj1yZJePQGmx5lLo/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzdlLzg2/L2JjLzdlODZiY2U3/OGMyMGEwNjMxYjQz/MGQxYzUzMzJiNjE0/LmpwZw",
       title: "Verified Information",
       description: "Access our database of fact-checked claims to stay informed with accurate information.",
       cta: "View Fact-Checks",

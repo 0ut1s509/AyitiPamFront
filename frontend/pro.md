@@ -34,7 +34,7 @@ La force de votre problème est que la solution d'une partie peut aider à réso
 
 **Solution Révisée et Améliorée**
 
-**Titre du Projet : Ayiti Vérité : Reprendre possession du récit haïtien par la vérité et la mise en valeur**
+**Titre du Projet : Ayiti Pam Nan : Reprendre possession du récit haïtien par la vérité et la mise en valeur**
 
 **De quoi s'agit-il :** Une plateforme web et mobile bilingue (créole/français) et un mouvement citoyen, construits sur une base de partenariats vérifiés, servant à la fois de bouclier contre la désinformation et de fenêtre sur le véritable potentiel d'Haïti. Notre crédibilité est assurée par notre **Réseau Certifié de Vérification des Faits**, un consortium de journalistes haïtiens de confiance, d'autorités nationales et d'experts académiques.
 
@@ -88,10 +88,10 @@ Une section multimédia et dynamique qui promeut activement des histoires positi
 
 **3. Innovation et Unicité (Le "Ce qui le rend spécial")**
 
-Ayiti Vérité n'est pas simplement un autre site de vérification des faits. Notre innovation réside dans un modèle fondamentalement holistique qui intègre la technologie, l'éducation et la mobilisation citoyenne en un écosystème unique et auto-renforçant, spécialement conçu pour le contexte haïtien.
+Ayiti Pam Nan n'est pas simplement un autre site de vérification des faits. Notre innovation réside dans un modèle fondamentalement holistique qui intègre la technologie, l'éducation et la mobilisation citoyenne en un écosystème unique et auto-renforçant, spécialement conçu pour le contexte haïtien.
 
 **En quoi notre approche est-elle nouvelle ou différente ?**
-Alors que d'autres initiatives s'attaquent à des fragments du puzzle de la désinformation, Ayiti Vérité est le premier à combiner ces fonctions critiques en un effort coordonné :
+Alors que d'autres initiatives s'attaquent à des fragments du puzzle de la désinformation, Ayiti Pam Nan est le premier à combiner ces fonctions critiques en un effort coordonné :
 
 **1. Le Modèle de Partenariat "Vérifié par" - Notre Innovation Centrale**
 *   **De quoi s'agit-il :** Nous ne publions pas seulement des démentis ; nous ancrons chaque information à une autorité validante (ex: Ministère de la Santé, association de journalistes, expert académique).
@@ -109,7 +109,7 @@ Alors que d'autres initiatives s'attaquent à des fragments du puzzle de la dés
 
 **4. Compétences Fondamentales en EMI (Le "Comment on enseigne")**
 
-La plateforme **Ayiti Vérité** est un environnement d'apprentissage appliqué et complet pour l'Éducation aux Médias et à l'Information (EMI). Chaque pilier est conçu pour développer des compétences spécifiques du programme de l'UNESCO, faisant passer les utilisateurs de la théorie à la pratique.
+La plateforme **Ayiti Pam Nan** est un environnement d'apprentissage appliqué et complet pour l'Éducation aux Médias et à l'Information (EMI). Chaque pilier est conçu pour développer des compétences spécifiques du programme de l'UNESCO, faisant passer les utilisateurs de la théorie à la pratique.
 
 **Compétence 1 : Accéder à l'information efficacement (Compétences réceptives)**
 *   **Comment nous la traitons :**
@@ -143,7 +143,7 @@ La plateforme **Ayiti Vérité** est un environnement d'apprentissage appliqué 
 *   **Comment nous la traitons :** Il s'agit d'une caractéristique déterminante de notre projet.
     *   **Pilier 2b/c (Trousses d'outils & Ambassadeurs) :** C'est l'application ultime de cette compétence. Nous fournissons les outils et la formation pour créer un effet multiplicateur, permettant aux utilisateurs de devenir eux-mêmes des éducateurs en EMI au sein de leur propre cercle social, leurs écoles et leurs villes, amplifiant considérablement l'impact du projet.
 
-**En résumé, Ayiti Vérité n'est pas simplement un outil pour l'EMI ; c'est un écosystème immersif d'EMI.** Il enseigne les compétences par **l'application directe** (Pilier 1), **l'éducation structurée** (Pilier 2) et **la modélisation éthique** (Pilier 3), créant un environnement d'apprentissage holistique et auto-renforçant qui construit une citoyenneté haïtienne plus résiliente et mieux informée.
+**En résumé, Ayiti Pam Nan n'est pas simplement un outil pour l'EMI ; c'est un écosystème immersif d'EMI.** Il enseigne les compétences par **l'application directe** (Pilier 1), **l'éducation structurée** (Pilier 2) et **la modélisation éthique** (Pilier 3), créant un environnement d'apprentissage holistique et auto-renforçant qui construit une citoyenneté haïtienne plus résiliente et mieux informée.
 
 ---
 
@@ -154,13 +154,13 @@ Voici la traduction française de la section sur l'impact et la mesure des résu
 
 **6. Impact et Mesure (Le "Comment vous saurez que ça marche")**
 
-Nous mesurerons l'impact d'**Ayiti Vérité** grâce à une approche méthodologique mixte, suivant à la fois des indicateurs quantitatifs (le "quoi") et des récits qualitatifs (le "pourquoi") par rapport à des objectifs clairs, ambitieux mais réalisables. Notre cadre est conçu pour démontrer la valeur pour les utilisateurs, les partenaires et les bailleurs de fonds.
+Nous mesurerons l'impact d'**Ayiti Pam Nan** grâce à une approche méthodologique mixte, suivant à la fois des indicateurs quantitatifs (le "quoi") et des récits qualitatifs (le "pourquoi") par rapport à des objectifs clairs, ambitieux mais réalisables. Notre cadre est conçu pour démontrer la valeur pour les utilisateurs, les partenaires et les bailleurs de fonds.
 
 **Quel changement allons-nous créer ? Nos Objectifs**
 
 **Objectifs à Court Terme (0-12 mois) :**
 1.  **Améliorer les Compétences en EMI :** Augmenter de **30%** la capacité des utilisateurs directs à identifier les techniques courantes de désinformation, mesurée par les résultats aux évaluations pré- et post-formation de nos micro-cours "Vérifiez par Vous-Même".
-2.  **Devenir un Centre de Ressources de Confiance :** Établir Ayiti Vérité comme une ressource de premier plan, en visant **10 000 visiteurs uniques mensuels** et une moyenne de **500 soumissions hebdomadaires** aux outils de vérification des faits d'ici la fin de la 1ère année.
+2.  **Devenir un Centre de Ressources de Confiance :** Établir Ayiti Pam Nan comme une ressource de premier plan, en visant **10 000 visiteurs uniques mensuels** et une moyenne de **500 soumissions hebdomadaires** aux outils de vérification des faits d'ici la fin de la 1ère année.
 3.  **Construire un Mouvement :** Former et déployer un réseau pilote de **50 Ambassadeurs EMI certifiés** dans 3 départements clés d'Haïti, qui animeront collectivement des ateliers pour au moins **2 000 citoyens**.
 4.  **Amplifier la Vérité :** Produire et publier plus de **200 articles de vérification des faits** et **50 profils "Haïti Dévoilée"**.
 
@@ -200,7 +200,7 @@ Voici la traduction française de la section sur la durabilité.
 
 **7. Durabilité (Le "Comment le projet perdure")**
 
-Notre engagement s'étend bien au-delà du hackathon. **Ayiti Vérité** est conçu dès sa conception pour être une institution durable et à long terme pour Haïti. Notre stratégie de longévité est construite sur trois piliers : un modèle de financement diversifié, des partenariats stratégiques profonds et un engagement indéfectible de l'équipe.
+Notre engagement s'étend bien au-delà du hackathon. **Ayiti Pam Nan** est conçu dès sa conception pour être une institution durable et à long terme pour Haïti. Notre stratégie de longévité est construite sur trois piliers : un modèle de financement diversifié, des partenariats stratégiques profonds et un engagement indéfectible de l'équipe.
 
 **Modèle de Financement : Diversifié pour la Résilience**
 Nous fonctionnerons sur un modèle à but non lucratif et gratuit pour garantir une accessibilité maximale. Les revenus seront générés par une approche multi-sources pour éviter toute dépendance à une source unique :
@@ -229,7 +229,7 @@ Notre équipe est profondément et personnellement investie dans l'avenir d'Haï
 *   **Rôles Dédiés :** Les membres clés de l'équipe transitionneront vers des rôles de leadership (Directeur de Projet, Chef des Partenariats, Chef de la Technologie) et consacreront un temps significatif au développement du projet, cherchant un financement pour éventuellement occuper ces postes à temps plein.
 *   **Conseil Consultatif :** Nous mettrons en place un conseil consultatif composé de personnalités respectées des médias, du monde universitaire et des affaires haïtiennes pour fournir des orientations stratégiques et une gouvernance.
 
-**En conclusion, Ayiti Vérité n'est pas un projet qui se termine ; c'est une institution qui commence.** Notre plan de durabilité garantit que nous évoluons d'une idée de hackathon vers un pilier permanent et de confiance de l'écosystème informationnel haïtien.
+**En conclusion, Ayiti Pam Nan n'est pas un projet qui se termine ; c'est une institution qui commence.** Notre plan de durabilité garantit que nous évoluons d'une idée de hackathon vers un pilier permanent et de confiance de l'écosystème informationnel haïtien.
 
 ---
 
@@ -242,7 +242,7 @@ Voici la traduction française de la section sur la demande de soutien.
 
 **8. Demande de Soutien (La "Demande")**
 
-Pour transformer **Ayiti Vérité** d'un concept puissant en une réalité opérationnelle, nous avons besoin d'un soutien stratégique de l'UNESCO et de son réseau dans trois domaines clés :
+Pour transformer **Ayiti Pam Nan** d'un concept puissant en une réalité opérationnelle, nous avons besoin d'un soutien stratégique de l'UNESCO et de son réseau dans trois domaines clés :
 
 **1. Accès Stratégique et Légitimité**
 *   **Reconnaissance Officielle et Crédibilité :** Une lettre de soutien ou de reconnaissance officielle de l'UNESCO serait inestimable. Cela apporterait instantanément la légitimité mondiale nécessaire pour ouvrir les portes auprès des ministères gouvernementaux haïtiens, des institutions nationales et des bailleurs de fonds potentiels qui font confiance au jugement de l'UNESCO.
@@ -261,6 +261,6 @@ Pour transformer **Ayiti Vérité** d'un concept puissant en une réalité opér
 *   **Financement Pilote :** Un financement de démarrage pour développer et héberger le Produit Minimum Viable (MVP) et exécuter le premier pilote du programme des Ambassadeurs EMI. Cet investissement initial est crucial pour démontrer la preuve de concept à d'autres bailleurs.
 *   **Soutien à la Rédaction de Projets :** Une aide pour identifier et postuler aux opportunités de subventions les plus pertinentes auprès d'autres agences de l'ONU, des banques de développement et des fondations axées sur les médias, l'éducation et la consolidation de la paix en Haïti.
 
-**En bref, nous ne voyons pas l'UNESCO simplement comme un bailleur de fonds ; nous vous voyons comme le partenaire stratégique essentiel** qui peut apporter la crédibilité, les connexions et l'expertise nécessaires pour garantir qu'Ayiti Vérité soit construit sur des bases solides et ait l'impact maximum possible pour le peuple haïtien.
+**En bref, nous ne voyons pas l'UNESCO simplement comme un bailleur de fonds ; nous vous voyons comme le partenaire stratégique essentiel** qui peut apporter la crédibilité, les connexions et l'expertise nécessaires pour garantir qu'Ayiti Pam Nan soit construit sur des bases solides et ait l'impact maximum possible pour le peuple haïtien.
 
 

@@ -36,7 +36,7 @@ const LoginForm = ({ onToggleMode, onSuccess }) => {
 
   return (
     <div className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-center mb-6">Login to Ayiti Vérité</h2>
+      <h2 className="text-2xl font-bold text-center mb-6">Login to Ayiti Pam Nan</h2>
       
       {error && (
         <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-4">

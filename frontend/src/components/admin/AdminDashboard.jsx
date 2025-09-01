@@ -54,7 +54,7 @@ const AdminDashboard = () => {
             <div className="flex justify-between items-center py-6">
               <div>
                 <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
-                <p className="text-gray-600">Manage Ayiti Vérité content and submissions</p>
+                <p className="text-gray-600">Manage Ayiti Pam Nan content and submissions</p>
               </div>
               <div className="flex items-center space-x-3">
                 <button

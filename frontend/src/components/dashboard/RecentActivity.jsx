@@ -29,7 +29,7 @@ const RecentActivity = ({ submissions, factChecks, showAll = false }) => {
     <div className="bg-white rounded-lg shadow">
       <div className="px-6 py-4 border-b border-gray-200">
         <h2 className="text-xl font-semibold text-gray-900">Recent Activity</h2>
-        <p className="text-sm text-gray-600">Your latest interactions with Ayiti Vérité</p>
+        <p className="text-sm text-gray-600">Your latest interactions with Ayiti Pam Nan</p>
       </div>
 
       <div className="divide-y divide-gray-200">

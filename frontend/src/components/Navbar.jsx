@@ -21,7 +21,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo/Brand */}
             <div className="flex-shrink-0 flex items-center">
-              <span className="text-xl font-bold text-[var(--color-av-blue-600)]">Ayiti Vérité</span>
+              <span className="text-xl font-bold text-[var(--color-av-blue-600)]">Ayiti Pam Nan</span>
             </div>
 
             {/* Desktop Navigation Links - centered */}

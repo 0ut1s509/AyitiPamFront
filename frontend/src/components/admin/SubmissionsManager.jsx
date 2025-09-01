@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { showError, showSuccess } from '../../utils/toast';
 import VerdictModal from './VerdictModal';
-import AIAnalysis from './AIAnalysis'; // Import the AI Analysis component
+import AIAnalysis from './AIAnalysis';
 
 const VITE_API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -15,13 +15,13 @@ const SubmissionsManager = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedSubmissions, setSelectedSubmissions] = useState(new Set());
     const [verdictModalOpen, setVerdictModalOpen] = useState(false);
-    const [detailModalOpen, setDetailModalOpen] = useState(false); // For the detail modal
-
-    console.log('Selected Submissions:', selectedSubmissions);
+    const [detailModalOpen, setDetailModalOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [itemsPerPage, setItemsPerPage] = useState(10);
 
     const handleVerdictSuccess = (result) => {
         showSuccess(`Verdict created and submission marked as completed!`);
-        fetchSubmissions(); // Refresh the list
+        fetchSubmissions();
     };
 
     // Add bulk action functions
@@ -83,7 +83,7 @@ const SubmissionsManager = () => {
                 status: newStatus
             });
             showSuccess('Submission status updated');
-            fetchSubmissions(); // Refresh the list
+            fetchSubmissions();
         } catch (error) {
             showError('Failed to update submission status');
             console.error('Error updating submission:', error);
@@ -98,7 +98,7 @@ const SubmissionsManager = () => {
         try {
             await axios.delete(`${VITE_API_BASE_URL}/api/admin/submissions/${id}/`);
             showSuccess('Submission deleted successfully');
-            fetchSubmissions(); // Refresh the list
+            fetchSubmissions();
         } catch (error) {
             showError('Failed to delete submission');
             console.error('Error deleting submission:', error);
@@ -119,6 +119,11 @@ const SubmissionsManager = () => {
 
         return matchesStatus && matchesType && matchesSearch;
     });
+
+    // Pagination logic
+    const totalPages = Math.ceil(filteredSubmissions.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const currentItems = filteredSubmissions.slice(startIndex, startIndex + itemsPerPage);
 
     const getStatusBadgeClass = (status) => {
         switch (status) {
@@ -149,56 +154,13 @@ const SubmissionsManager = () => {
     }
 
     return (
-        <div>
+        <div className="p-4">
             {/* Header */}
             <div className="mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">User Submissions Management</h2>
                 <p className="text-sm text-gray-600 mt-1">
                     Manage user-submitted claims and URLs for fact-checking
                 </p>
-            </div>
-
-            {/* Filters and Search */}
-            <div className="bg-white p-4 rounded-lg shadow-sm mb-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                        <select
-                            value={statusFilter}
-                            onChange={(e) => setStatusFilter(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                        >
-                            <option value="all">All Statuses</option>
-                            <option value="new">New</option>
-                            <option value="in_review">In Review</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
-                        <select
-                            value={typeFilter}
-                            onChange={(e) => setTypeFilter(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                        >
-                            <option value="all">All Types</option>
-                            <option value="url">URL Submissions</option>
-                            <option value="text">Text Claims</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
-                        <input
-                            type="text"
-                            placeholder="Search submissions..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                        />
-                    </div>
-                </div>
             </div>
 
             {/* Stats Summary */}
@@ -227,13 +189,72 @@ const SubmissionsManager = () => {
                 </div>
             </div>
 
+            {/* Filters and Actions */}
+            <div className="bg-white p-4 rounded-lg shadow-sm mb-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 flex-grow">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                            <select
+                                value={statusFilter}
+                                onChange={(e) => setStatusFilter(e.target.value)}
+                                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                            >
+                                <option value="all">All Statuses</option>
+                                <option value="new">New</option>
+                                <option value="in_review">In Review</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+                            <select
+                                value={typeFilter}
+                                onChange={(e) => setTypeFilter(e.target.value)}
+                                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                            >
+                                <option value="all">All Types</option>
+                                <option value="url">URL Submissions</option>
+                                <option value="text">Text Claims</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                            <input
+                                type="text"
+                                placeholder="Search submissions..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <label className="text-sm font-medium text-gray-700">Show:</label>
+                        <select
+                            value={itemsPerPage}
+                            onChange={(e) => setItemsPerPage(Number(e.target.value))}
+                            className="border border-gray-300 rounded-md px-2 py-1 text-sm"
+                        >
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             {selectedSubmissions.size > 0 && (
                 <div className="bg-blue-50 p-4 rounded-lg mb-4">
-                    <div className="flex items-center justify-between">
-                        <span className="text-blue-800">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                        <span className="text-blue-800 font-medium">
                             {selectedSubmissions.size} submission(s) selected
                         </span>
-                        <div className="flex space-x-2">
+                        <div className="flex flex-wrap gap-2">
                             <select
                                 onChange={(e) => handleBulkStatusChange(e.target.value)}
                                 className="border border-blue-300 rounded-md px-3 py-1 text-sm"
@@ -262,108 +283,160 @@ const SubmissionsManager = () => {
 
             {/* Submissions Table */}
             <div className="bg-white shadow-sm rounded-lg overflow-hidden">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                        <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Submission
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Submitted By
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Type
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Status
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Date
-                            </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Actions
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
-                        {filteredSubmissions.map((submission) => (
-                            <tr key={submission.id} className="hover:bg-gray-50">
-                                <td className="px-6 py-4">
-                                    <div className="text-sm font-medium text-gray-900 max-w-xs truncate">
-                                        {submission.claim_text || submission.url_submitted}
-                                    </div>
-                                    {submission.is_recent && (
-                                        <span className="inline-block mt-1 px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
-                                            New
-                                        </span>
-                                    )}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm text-gray-900">
-                                        {submission.submitter_name || 'Anonymous'}
-                                    </div>
-                                    {submission.submitter_email && (
-                                        <div className="text-sm text-gray-500">{submission.submitter_email}</div>
-                                    )}
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <span className="inline-flex px-2 py-1 text-xs font-semibold bg-gray-100 text-gray-800 rounded-full">
-                                        {getTypeBadge(submission)}
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <select
-                                        value={submission.status}
-                                        onChange={(e) => updateSubmissionStatus(submission.id, e.target.value)}
-                                        className={`text-xs font-semibold rounded-full px-3 py-1 border-0 focus:ring-2 focus:ring-blue-500 ${getStatusBadgeClass(submission.status)}`}
-                                    >
-                                        <option value="new">New</option>
-                                        <option value="in_review">In Review</option>
-                                        <option value="completed">Completed</option>
-                                    </select>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {new Date(submission.date_submitted).toLocaleDateString()}
-                                    <br />
-                                    <span className="text-xs text-gray-400">
-                                        {new Date(submission.date_submitted).toLocaleTimeString()}
-                                    </span>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <button
-                                        onClick={() => {
-                                            setSelectedSubmission(submission);
-                                            setVerdictModalOpen(true);
-                                        }}
-                                        className="text-green-600 hover:text-green-900 mr-3"
-                                        title="Create verdict for this submission"
-                                    >
-                                        Add Verdict
-                                    </button>
-                                    <button
-                                        onClick={() => {
-                                            setSelectedSubmission(submission);
-                                            setDetailModalOpen(true);
-                                        }}
-                                        className="text-blue-600 hover:text-blue-900 mr-3"
-                                    >
-                                        View
-                                    </button>
-                                    <button
-                                        onClick={() => handleDelete(submission.id)}
-                                        className="text-red-600 hover:text-red-900"
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-200">
+                        <thead className="bg-gray-50">
+                            <tr>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Submission
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Submitted By
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Type
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Status
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Date
+                                </th>
+                                <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Actions
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200">
+                            {currentItems.map((submission) => (
+                                <tr key={submission.id} className="hover:bg-gray-50">
+                                    <td className="px-6 py-4">
+                                        <div className="text-sm font-medium text-gray-900 max-w-xs truncate">
+                                            {submission.claim_text || submission.url_submitted}
+                                        </div>
+                                        {submission.is_recent && (
+                                            <span className="inline-block mt-1 px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
+                                                New
+                                            </span>
+                                        )}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <div className="text-sm text-gray-900">
+                                            {submission.submitter_name || 'Anonymous'}
+                                        </div>
+                                        {submission.submitter_email && (
+                                            <div className="text-sm text-gray-500">{submission.submitter_email}</div>
+                                        )}
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <span className="inline-flex px-2 py-1 text-xs font-semibold bg-gray-100 text-gray-800 rounded-full">
+                                            {getTypeBadge(submission)}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap">
+                                        <select
+                                            value={submission.status}
+                                            onChange={(e) => updateSubmissionStatus(submission.id, e.target.value)}
+                                            className={`text-xs font-semibold rounded-full px-3 py-1 border-0 focus:ring-2 focus:ring-blue-500 ${getStatusBadgeClass(submission.status)}`}
+                                        >
+                                            <option value="new">New</option>
+                                            <option value="in_review">In Review</option>
+                                            <option value="completed">Completed</option>
+                                        </select>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {new Date(submission.date_submitted).toLocaleDateString()}
+                                        <br />
+                                        <span className="text-xs text-gray-400">
+                                            {new Date(submission.date_submitted).toLocaleTimeString()}
+                                        </span>
+                                    </td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <div className="flex flex-col sm:flex-row sm:gap-2">
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedSubmission(submission);
+                                                    setVerdictModalOpen(true);
+                                                }}
+                                                className="text-green-600 hover:text-green-900 mb-1 sm:mb-0"
+                                                title="Create verdict for this submission"
+                                            >
+                                                Add Verdict
+                                            </button>
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedSubmission(submission);
+                                                    setDetailModalOpen(true);
+                                                }}
+                                                className="text-blue-600 hover:text-blue-900 mb-1 sm:mb-0"
+                                            >
+                                                View
+                                            </button>
+                                            <button
+                                                onClick={() => handleDelete(submission.id)}
+                                                className="text-red-600 hover:text-red-900"
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
 
                 {filteredSubmissions.length === 0 && (
                     <div className="text-center py-12 text-gray-500">
                         {submissions.length === 0 ? 'No submissions found.' : 'No submissions match your filters.'}
+                    </div>
+                )}
+
+                {/* Pagination */}
+                {filteredSubmissions.length > 0 && (
+                    <div className="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+                        <div className="flex-1 flex justify-between items-center">
+                            <div>
+                                <p className="text-sm text-gray-700">
+                                    Showing <span className="font-medium">{startIndex + 1}</span> to{' '}
+                                    <span className="font-medium">
+                                        {Math.min(startIndex + itemsPerPage, filteredSubmissions.length)}
+                                    </span> of{' '}
+                                    <span className="font-medium">{filteredSubmissions.length}</span> results
+                                </p>
+                            </div>
+                            <div>
+                                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                                    <button
+                                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                                        disabled={currentPage === 1}
+                                        className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        Previous
+                                    </button>
+                                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                                        <button
+                                            key={page}
+                                            onClick={() => setCurrentPage(page)}
+                                            className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
+                                                currentPage === page
+                                                    ? 'z-10 bg-blue-50 border-blue-500 text-blue-600'
+                                                    : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                                            }`}
+                                        >
+                                            {page}
+                                        </button>
+                                    ))}
+                                    <button
+                                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                                        disabled={currentPage === totalPages}
+                                        className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        Next
+                                    </button>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 )}
             </div>
@@ -553,4 +626,4 @@ const SubmissionDetailModal = ({ submission, onClose, onStatusChange }) => {
     );
 };
 
-export default SubmissionsManager;  
+export default SubmissionsManager;
